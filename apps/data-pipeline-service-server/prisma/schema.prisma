@@ -1,0 +1,49 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Datasource {
+  connectionString String?
+  createdAt        DateTime @default(now())
+  id               String   @id @default(cuid())
+  name             String?
+  typeField        String?
+  updatedAt        DateTime @updatedAt
+}
+
+model Rule {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String?
+  updatedAt DateTime @updatedAt
+}
+
+model RuleCondition {
+  createdAt  DateTime @default(now())
+  fieldField String?
+  id         String   @id @default(cuid())
+  operator   String?
+  updatedAt  DateTime @updatedAt
+  value      String?
+}
+
+model RuleAction {
+  createdAt DateTime @default(now())
+  details   Json?
+  id        String   @id @default(cuid())
+  typeField String?
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  createdAt DateTime @default(now())
+  details   Json?
+  id        String   @id @default(cuid())
+  typeField String?
+  updatedAt DateTime @updatedAt
+}
